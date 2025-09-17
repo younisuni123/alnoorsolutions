@@ -2,19 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al Noor Solutions</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Al Noor Solutions | Professional Web Development & IT Services</title>
+    <meta name="description"
+        content="Al Noor Solutions provides complete website development, custom software, backend APIs, payment gateways, e-commerce, and mobile app integrations. Your trusted IT partner." />
+    <meta name="keywords"
+        content="Al Noor Solutions, website development, backend developer, Laravel, PHP, React, APIs, payment gateways, custom software, e-commerce, inventory software, pharmacy software, multivendor solutions, mobile apps" />
+    <meta name="author" content="Al Noor Solutions - Muhammad Younis" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Al Noor Solutions | Professional Web Development & IT Services" />
+    <meta property="og:description"
+        content="We build complete solutions: websites, backend systems, APIs, payment gateways, inventory software, pharmacy solutions, e-commerce & mobile app APIs." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alnoorsolutions.com/" />
+    <meta property="og:image" content="https://alnoorsolutions.com/assets/img/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Al Noor Solutions | Professional Web Development & IT Services" />
+    <meta name="twitter:description"
+        content="We deliver websites, APIs, custom software & mobile app solutions for your business." />
+    <meta name="twitter:image" content="https://alnoorsolutions.com/assets/img/logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="icon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icon.png" />
+
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- AOS Animation -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
             background: #f8f9fa;
             scroll-behavior: smooth;
+        }
+
+        .gr-bg {
+            background: linear-gradient(to right, #e5e7ff 0, #ffffff 100%);
+        }
+
+        .gr-white {
+            background: linear-gradient(to right, #e5f9ff 0, #ffffff 100%);
+        }
+
+        .gr-white2 {
+            background: linear-gradient(to right, #ffede5 0, #ffffff 100%);
+        }
+
+        .gr-white3 {
+            background: linear-gradient(to right, #eae5ff 0, #ffffff 100%);
         }
 
         /* Navbar */
@@ -117,13 +164,13 @@
     </style>
 </head>
 
-<body>
+<body class="gr-bg">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top p-0">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#">
-                <img src="logo.svg" height="60" alt="" srcset="">
+                <img src="assets/img/logo.png" height="60" alt="" srcset="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -165,24 +212,24 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="bg-light">
+    <section id="services">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up">
-                    <div class="card p-3 text-center h-100">
+                    <div class="card p-3 text-center h-100 gr-white">
                         <h5>Website Development</h5>
                         <p>Custom websites with HTML, CSS, JS, Bootstrap, Tailwind, Laravel, React, and more.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card p-3 text-center h-100">
+                    <div class="card p-3 text-center h-100 gr-white2">
                         <h5>Backend & APIs</h5>
                         <p>Expertise in backend systems, API development & integration for seamless applications.</p>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card p-3 text-center h-100">
+                    <div class="card p-3 text-center h-100 gr-white3">
                         <h5>Mobile Apps & Software</h5>
                         <p>Custom software (Pharmacy, Inventory, Multivendor) & APIs for mobile applications.</p>
                     </div>
@@ -197,7 +244,7 @@
             <h2 class="section-title">Pricing Packages</h2>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up">
-                    <div class="pricing-card p-4">
+                    <div class="pricing-card p-4 gr-white">
                         <h3>Starter</h3>
                         <div class="price">$199</div>
                         <p>Basic business website with responsive design.</p>
@@ -206,7 +253,7 @@
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="pricing-card p-4">
+                    <div class="pricing-card p-4 gr-white2">
                         <h3>Standard</h3>
                         <div class="price">$499</div>
                         <p>Advanced website with backend APIs and integrations.</p>
@@ -215,7 +262,7 @@
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-card p-4">
+                    <div class="pricing-card p-4 gr-white3">
                         <h3>Premium</h3>
                         <div class="price">$999</div>
                         <p>Complete solution with custom backend, APIs, and mobile app support.</p>
@@ -228,7 +275,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="bg-light">
+    <section id="contact">
         <div class="container" data-aos="fade-up">
             <h2 class="section-title">Contact Us</h2>
             <div class="row justify-content-center">
