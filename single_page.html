@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation - Mian Younis & Zakia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .bismillah {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2em;
+      color: #f5d06f;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin: 0;
+      color: #ffd369;
+      letter-spacing: 1px;
+      animation: slideDown 1.5s ease;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      font-weight: 400;
+      color: #f2f2f2;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    .details {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 25px;
+      line-height: 1.8;
+      font-size: 1.05em;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+      animation: fadeUp 2s ease;
+    }
+
+    .highlight {
+      color: #ffd369;
+      font-weight: 600;
+    }
+
+    .quote {
+      font-style: italic;
+      margin: 30px 0;
+      color: #f1f1f1;
+      font-size: 1.05em;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: #ddd;
+      font-size: 0.9em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2em; }
+      .details { font-size: 1em; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <h1>Wedding Invitation</h1>
+    <h2>of</h2>
+    <h1 style="color:#fff;">Mian Muhammad Younis Garwan<br>& Hafiz Muhammad Yousaf</h1>
+
+    <div class="quote">
+      “And among His signs is that He created for you spouses from among yourselves, 
+      that you may find tranquility in them, and He placed between you affection and mercy.”  
+      <br>— <strong>Surah Ar-Rum 30:21</strong>
+    </div>
+
+    <div class="details">
+      <p>We joyfully invite you to celebrate our Nikah ceremony.</p>
+      <p><span class="highlight">Date & Time:</span> Tuesday, 18 November | 1:00 PM - 3:00 PM</p>
+      <p><span class="highlight">Venue:</span><br>
+         Chak No 132/TDA<br>
+         Garwan House Munawar Abad
+      </p>
+      <p>We request your gracious presence and blessings on this auspicious occasion.</p>
+    </div>
+
+    <footer>
+      With love & duas,<br>
+      The Families of <strong>Mian Noor Muhammad</strong>
+    </footer>
+  </div>
+</body>
+</html>
