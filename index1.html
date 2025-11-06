@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valima Invitation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('https://i.pinimg.com/736x/01/dc/dd/01dcdd64d89b5e328844a126482ab682.jpg') no-repeat center/cover;
+    min-height: 100vh;
+    color: #5a4a2f;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    <!--  overflow: hidden;-->
+  }
+  /* Styles specifically for screens with a maximum width (e.g., typical mobile devices) */
+@media screen and (max-width: 767px) {
+  body {
+   <!--  min-height: 300vh;-->
+  }
+  /* other mobile-specific styles */
+}
+  .overlay {
+    background: rgba(255,255,255,0.92);
+    border: 3px solid #d4af37;
+    box-shadow: 0 0 20px #d4af3780;
+    padding: 40px 25px;
+    max-width: 600px;
+    border-radius: 20px;
+    animation: fadeIn 2s ease-in-out;
+    position: relative;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #c39b00;
+    margin-bottom: 10px;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  .valima{
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    color: #c39b00;
+    font-weight:bold;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  h2, h3, p {
+    margin: 5px 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  h2 { font-weight: 600; font-size: 18px; text-transform: uppercase; }
+  .names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #a67c00;
+    margin: -5px 0;
+  }
+  .time {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #7b6a44;
+  }
+  .countdown {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #a67c00;
+    letter-spacing: 1px;
+  }
+  .dua {
+    margin: 25px 0;
+    font-style: italic;
+    color: #6e5b3b;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes glow {
+    from {text-shadow: 0 0 5px #d4af37;}
+    to {text-shadow: 0 0 20px #ffeb99;}
+  }
+
+  /* floating petals */
+  .petal {
+    position: absolute;
+    width: 20px; height: 20px;
+    background: url('https://cdn-icons-png.flaticon.com/512/1040/1040230.png') no-repeat center/contain;
+    opacity: 0.8;
+    animation: fall 5s linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-10%) rotate(0deg); opacity: 1;}
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0;}
+  }
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay">
+  <h3 style="font-family:'Great Vibes', cursive;font-size:32px;color:#a67c00;">بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ</h3>
+  <h1>Mr. & Mrs. Mian Noor Muhammad Garwan</h1>
+  <p>Request the honor of your presence at the <span class="valima">Valima Ceremony</span> of the beloved sons</p>
+
+  <div class="names">Mian Muhammad Younis</div>
+  <div class="names">&</div>
+  <div class="names">Hafiz Muhammad Yousaf</div>
+
+<h1> إِنْ شَاءَ ٱللَّٰهُ</h1>
+  <p class="time">Tuesday, 18 November 2025 <br> 1:00 PM to 3:00 PM</p>
+
+  <div class="countdown" id="countdown"></div>
+  <div class=""></div>
+  <p class="time">Chak No 132/T.D.A Munawar Abad </br>
+  Dera Mian Noor Muhammad Garwan</p>
+  <a href="https://maps.app.goo.gl/QY5KMi2YS7deyJC96">Click here for Goole Map Location</a>
+
+  <p class="dua">Insha’Allah your presence will bless the occasion.</p>
+</div>
+
+<script>
+// Countdown Timer
+const countDownDate = new Date("Nov 18, 2025 14:00:00").getTime();
+const countdown = document.getElementById("countdown");
+const timer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  if (distance < 0) {
+    clearInterval(timer);
+    countdown.innerHTML = "The ceremony has begun!";
+    return;
+  }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+}, 1000);
+
+// Generate floating petals
+for(let i=0; i<10; i++){
+  let petal = document.createElement('div');
+  petal.classList.add('petal');
+  petal.style.left = Math.random()*100 + 'vw';
+  petal.style.animationDelay = Math.random()*5 + 's';
+  petal.style.animationDuration = (8+Math.random()*4) + 's';
+  document.body.appendChild(petal);
+}
+</script>
+</body>
+</html>
