@@ -3,8 +3,39 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valima Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+
+  <title>Valima Invitation | Mian Muhammad Younis & Hafiz Muhammad Yousaf</title>
+
+  <!-- 🌸 Description for better link previews -->
+  <meta name="description"
+    content="You're warmly invited to the Valima Ceremony of Mian Muhammad Younis & Hafiz Muhammad Yousaf. Join us in celebrating this blessed occasion with Mian Noor Muhammad Garwan">
+
+  <!-- 🕊️ Author and theme info -->
+  <meta name="author" content="Mr. & Mrs. Mian Noor Muhammad Garwan" />
+  <meta name="theme-color" content="#d4af37" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- 📱 Social Media / Link Preview (Open Graph) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Valima Invitation | Younis & Yousaf" />
+  <meta property="og:description"
+    content="You are cordially invited to the Valima Ceremony of Mian Muhammad Younis & Hafiz Muhammad Yousaf. Tuesday, 18 November 2025 — 1:00 PM to 3:00 PM" />
+  <meta property="og:image" content="card.jpg" />
+  <meta property="og:url" content="https://alnoorsolutions.com" />
+  <meta property="og:site_name" content="Valima Invitation" />
+
+  <!-- 🕊️ Twitter Card (for WhatsApp, Twitter & Messenger) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Valima Invitation | Younis & Yousaf" />
+  <meta name="twitter:description"
+    content="You’re invited to the Valima Ceremony of Mian Muhammad Younis & Hafiz Muhammad Yousaf. Tuesday, 18 November 2025 — 1:00 PM to 3:00 PM." />
+  <meta name="twitter:image" content="card.jpg" />
+
+
+  <!-- 💍 Favicon -->
+  <link rel="icon" type="image/png" href="star.png">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
 
@@ -19,6 +50,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      /* overflow-x: hidden; */
       /* overflow: hidden; */
     }
 
@@ -129,7 +161,7 @@
       }
 
       100% {
-        transform: translateY(50vh) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -141,14 +173,14 @@
     /* Music button */
     #music-btn {
       position: fixed;
-      bottom: 10px;
-      right: 10px;
+      bottom: 30px;
+      right: 20px;
       background: #d4af37;
       color: white;
       border: none;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 48px;
+      height: 48px;
       font-size: 16px;
       cursor: pointer;
       box-shadow: 0 0 10px #b38f00;
@@ -175,13 +207,27 @@
     <div class="names">Mian Muhammad Younis</div>
     <div class="names">&</div>
     <div class="names">Hafiz Muhammad Yousaf</div>
+    <h1>Looking forward</h1>
+    <p class="time">
+      Mr. & Mrs. Mian Gulam Muhammad<br>
+      Mr. & Mrs. Mian Gulam Qasim<br>
+      Mr. & Mrs. Mian Shair Muhammad<br>
+      Mr. & Mrs. zahoor Hussain urf Jani<br>
+      Mr. Mian Muhammad Shoaib<br>
+      Mr. Mian Muhammad Ayoub
+    </p>
 
-    <h1> إِنْ شَاءَ ٱللَّٰهُ</h1>
+    <h1>R.S.V.P</h1>
+    <p class="countdown">All Family Members & Friends</p>
+
+    <h1 id="un" style="font-size: 28px; display: none;">Welcome, <span id="user-name"></span></h1>
+    <h1>Program Insha Allah</h1>
+    <!-- <h1> إِنْ شَاءَ ٱللَّٰهُ</h1> -->
     <p class="time">Tuesday, 18 November 2025 <br> 1:00 PM to 3:00 PM</p>
 
     <div class="countdown" id="countdown"></div>
     <div class=""></div>
-    <a href="https://maps.app.goo.gl/QY5KMi2YS7deyJC96" target="_blank">
+    <a href="https://maps.app.goo.gl/QY5KMi2YS7deyJC96" target="_blank" style="margin-top: 10px;">
       <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -191,7 +237,7 @@
             stroke="#c39b00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
       </svg>
-      <p class="time">Chak No 132/T.D.A Munawar Abad </br>
+      <p class="time" style="margin-top: -10px;">Chak No 132/T.D.A Munawar Abad </br>
         Dera Mian Noor Muhammad Garwan</p> Click here for Goole Map Location
     </a>
 
@@ -202,25 +248,43 @@
   </audio>
 
   <button id="music-btn" title="Toggle Music">🎵</button>
+
+
+  <script>
+    // 1. Get the query string part of the current URL
+    const queryString = window.location.search;
+
+    // 2. Create a URLSearchParams object to easily parse the parameters
+    const urlParams = new URLSearchParams(queryString);
+
+    // 3. Retrieve the value associated with the 'name' parameter
+    const userName = urlParams.get('name');
+
+    // 4. Update the HTML content if a name was found
+    if (userName) {
+      // The .get() method automatically decodes URL-encoded characters (like %20 to space)
+      document.getElementById('user-name').textContent = userName;
+      document.getElementById('un').style.display = "block";
+    }
+
+    // Example if no name is provided: The span will keep its default content ("Guest").
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const music = document.getElementById("background-music");
       // Music toggle
       const btn = document.getElementById("music-btn");
       let playing = false;
-      let playing_event = true;
 
       btn.addEventListener("click", () => {
         if (!playing) {
           music.play().then(() => {
             playing = true;
-            playing_event = true;
             btn.textContent = "⏸️";
           }).catch(err => console.log("Playback blocked:", err));
         } else {
           music.pause();
           playing = false;
-          playing_event = false;
           btn.textContent = "🎵";
         }
       });
@@ -235,16 +299,13 @@
             console.log("Music started after user interaction.");
             document.removeEventListener("click", startMusic);
             document.removeEventListener("touchstart", startMusic);
-            document.removeEventListener("scroll", startMusic);
             playing = true;
             btn.textContent = "⏸️";
           }).catch(err => console.log("Still blocked:", err));
-        };
-      
-          document.addEventListener("click", startMusic);
-          document.addEventListener("touchstart", startMusic);
-          document.addEventListener("scroll", startMusic);
-    
+        }
+        document.addEventListener("scroll", startMusic);
+        document.addEventListener("click", startMusic);
+        document.addEventListener("touchstart", startMusic);
       });
     });
   </script>
@@ -269,15 +330,34 @@
     }, 1000);
 
     // Generate floating petals
+    // for (let i = 0; i < 10; i++) {
+    //   let petal = document.createElement('div');
+    //   petal.classList.add('petal');
+    //   petal.style.left = Math.random() * 100 + 'vw';
+    //   petal.style.animationDelay = Math.random() * 5 + 's';
+    //   petal.style.animationDuration = (8 + Math.random() * 4) + 's';
+    //   document.body.appendChild(petal);
+    // }
+
+    // Petals animation - improved (no scrollbar)
+    const petalsContainer = document.createElement('div');
+    petalsContainer.style.position = 'fixed';
+    petalsContainer.style.top = 0;
+    petalsContainer.style.left = 0;
+    petalsContainer.style.width = '100%';
+    petalsContainer.style.height = '100%';
+    petalsContainer.style.overflow = 'hidden';
+    petalsContainer.style.pointerEvents = 'none'; // prevent blocking clicks
+    document.body.appendChild(petalsContainer);
+
     for (let i = 0; i < 10; i++) {
-      let petal = document.createElement('div');
+      const petal = document.createElement('div');
       petal.classList.add('petal');
       petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDelay = Math.random() * 5 + 's';
+      petal.style.animationDelay = Math.random() * 3 + 's';
       petal.style.animationDuration = (8 + Math.random() * 4) + 's';
-      document.body.appendChild(petal);
+      petalsContainer.appendChild(petal);
     }
-
 
   </script>
 </body>
