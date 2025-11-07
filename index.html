@@ -240,11 +240,11 @@
             btn.textContent = "⏸️";
           }).catch(err => console.log("Still blocked:", err));
         };
-        if (playing_event) {
+      
           document.addEventListener("click", startMusic);
           document.addEventListener("touchstart", startMusic);
           document.addEventListener("scroll", startMusic);
-        }
+    
       });
     });
   </script>
