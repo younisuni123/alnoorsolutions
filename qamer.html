@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+
+    <title>Valima Invitation</title>
+
+    <!-- 💍 Favicon -->
+    <link rel="icon" type="image/png" href="star.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            background: url('frame.jpg') no-repeat top/cover;
+            min-height: 100vh;
+            color: #5a4a2f;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* overflow-x: hidden; */
+            /* overflow: hidden; */
+        }
+
+
+        .overlay {
+            background: rgba(255, 255, 255, 0.92);
+            border: 3px solid #d4af37;
+            box-shadow: 0 0 20px #d4af3780;
+            padding: 40px 25px;
+            max-width: 800px;
+            border-radius: 20px;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #c39b00;
+            margin-bottom: 10px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        .valima {
+            font-family: 'Great Vibes', cursive;
+            font-size: 32px;
+            color: #c39b00;
+            font-weight: bold;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        h2,
+        h3,
+        p {
+            margin: 5px 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        h2 {
+            font-weight: 600;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #a67c00;
+            margin: -5px 0;
+        }
+
+        .time {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #7b6a44;
+        }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #a67c00;
+            letter-spacing: 1px;
+        }
+
+        .dua {
+            margin: 25px 0;
+            font-style: italic;
+            color: #6e5b3b;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #d4af37;
+            }
+
+            to {
+                text-shadow: 0 0 20px #ffeb99;
+            }
+        }
+
+        /* floating petals */
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('star.png') no-repeat center/contain;
+            opacity: 0.8;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10%) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        a {
+            text-decoration: auto;
+        }
+
+        /* Music button */
+        #music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #b38f00;
+            transition: all 0.3s ease;
+        }
+
+        #music-btn:hover {
+            background: #b38f00;
+            box-shadow: 0 0 20px #d4af37;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="overlay">
+        <h3 style="font-family:'Great Vibes', cursive;font-size:32px;color:#a67c00;">بِسْمِ اللَّهِ الرَّحْمَـٰنِ
+            الرَّحِيمِ
+        </h3>
+        <h1>Mr. & Mrs. Mahr Ghulam Abbas Lohach</h1>
+        <p>Request the honor of your presence at the <span class="valima">Valima Ceremony</span> of the beloved son</p>
+
+        <div class="names">Mahr Qamer Abbas</div>
+        <!--  
+   <h1>Looking forward</h1>
+    <p class="time">
+      Mr. & Mrs. Mian Gulam Muhammad<br>
+      Mr. & Mrs. Mian Gulam Qasim<br>
+      Mr. & Mrs. Mian Shair Muhammad<br>
+      Mr. & Mrs. zahoor Hussain urf Jani<br>
+      Mr. Mian Muhammad Shoaib<br>
+      Mr. Mian Muhammad Ayoub
+    </p>
+
+    <h1>R.S.V.P</h1>
+    <p class="countdown">All Family Members & Friends</p>  -->
+
+        <h1 id="un" style="font-size: 28px; display: none;">Welcome, <span id="user-name"></span></h1>
+        <h1>Program Insha Allah</h1>
+        <!-- <h1> إِنْ شَاءَ ٱللَّٰهُ</h1> -->
+        <p class="time">Sunday, 25 January 2026 <br> 1:00 PM to 3:00 PM</p>
+
+        <div class="countdown" id="countdown"></div>
+        <div class=""></div>
+        <!-- <a href="https://maps.app.goo.gl/QY5KMi2YS7deyJC96" target="_blank" style="margin-top: 10px;"> -->
+        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M6.75 15.8719C4.91775 16.3252 3.75 17.011 3.75 17.7785C3.75 19.1435 7.44365 20.25 12 20.25C16.5563 20.25 20.25 19.1435 20.25 17.7785C20.25 17.011 19.0823 16.3252 17.25 15.8719M13.5 9C13.5 9.82843 12.8284 10.5 12 10.5C11.1716 10.5 10.5 9.82843 10.5 9C10.5 8.17157 11.1716 7.5 12 7.5C12.8284 7.5 13.5 8.17157 13.5 9ZM17.25 8.8125C17.25 12 14.25 15.75 12 17.25C9.75 15.75 6.75 12 6.75 8.8125C6.75 6.01656 9 3.75 12 3.75C15 3.75 17.25 6.01656 17.25 8.8125Z"
+                    stroke="#c39b00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </svg>
+        <p class="time" style="margin-top: -10px;">Chak No 132/T.D.A </br>
+            Garwan House Munawar Abad </p>
+        <!-- Click here for Goole Map Location
+        </a> -->
+
+        <p class="dua">Insha’Allah your presence will bless the occasion.</p>
+    </div>
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-btn" title="Toggle Music">🎵</button>
+
+
+    <script>
+        // 1. Get the query string part of the current URL
+        const queryString = window.location.search;
+
+        // 2. Create a URLSearchParams object to easily parse the parameters
+        const urlParams = new URLSearchParams(queryString);
+
+        // 3. Retrieve the value associated with the 'name' parameter
+        const userName = urlParams.get('name');
+
+        // 4. Update the HTML content if a name was found
+        if (userName) {
+            // The .get() method automatically decodes URL-encoded characters (like %20 to space)
+            document.getElementById('user-name').textContent = userName;
+            document.getElementById('un').style.display = "block";
+        }
+
+        // Example if no name is provided: The span will keep its default content ("Guest").
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const music = document.getElementById("background-music");
+            // Music toggle
+            const btn = document.getElementById("music-btn");
+            let playing = false;
+
+            btn.addEventListener("click", () => {
+                if (!playing) {
+                    music.play().then(() => {
+                        playing = true;
+                        btn.textContent = "⏸️";
+                    }).catch(err => console.log("Playback blocked:", err));
+                } else {
+                    music.pause();
+                    playing = false;
+                    btn.textContent = "🎵";
+                }
+            });
+
+            // Try autoplay first (some browsers allow it if muted policy is relaxed)
+            music.play().catch(() => {
+                console.log("Autoplay blocked, waiting for first user interaction...");
+
+                // Wait for first user interaction
+                const startMusic = () => {
+                    music.play().then(() => {
+                        console.log("Music started after user interaction.");
+                        document.removeEventListener("click", startMusic);
+                        document.removeEventListener("touchstart", startMusic);
+                        playing = true;
+                        btn.textContent = "⏸️";
+                    }).catch(err => console.log("Still blocked:", err));
+                }
+                document.addEventListener("scroll", startMusic);
+                document.addEventListener("click", startMusic);
+                document.addEventListener("touchstart", startMusic);
+            });
+        });
+    </script>
+
+    <script>
+        // Countdown Timer
+        const countDownDate = new Date("Jan 25, 2026 14:00:00").getTime();
+        const countdown = document.getElementById("countdown");
+        const timer = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            if (distance < 0) {
+                clearInterval(timer);
+                countdown.innerHTML = "The ceremony has begun!";
+                return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+        }, 1000);
+
+        // Generate floating petals
+        // for (let i = 0; i < 10; i++) {
+        //   let petal = document.createElement('div');
+        //   petal.classList.add('petal');
+        //   petal.style.left = Math.random() * 100 + 'vw';
+        //   petal.style.animationDelay = Math.random() * 5 + 's';
+        //   petal.style.animationDuration = (8 + Math.random() * 4) + 's';
+        //   document.body.appendChild(petal);
+        // }
+
+        // Petals animation - improved (no scrollbar)
+        const petalsContainer = document.createElement('div');
+        petalsContainer.style.position = 'fixed';
+        petalsContainer.style.top = 0;
+        petalsContainer.style.left = 0;
+        petalsContainer.style.width = '100%';
+        petalsContainer.style.height = '100%';
+        petalsContainer.style.overflow = 'hidden';
+        petalsContainer.style.pointerEvents = 'none'; // prevent blocking clicks
+        document.body.appendChild(petalsContainer);
+
+        for (let i = 0; i < 10; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDelay = Math.random() * 3 + 's';
+            petal.style.animationDuration = (8 + Math.random() * 4) + 's';
+            petalsContainer.appendChild(petal);
+        }
+
+    </script>
+</body>
+
+</html>
