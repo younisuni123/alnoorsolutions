@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan-e-Madina Masajid - Faisalabad | فیضان مدینہ مساجد - فیصل آباد</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a3a1a 0%, #0d1f0d 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Islamic Pattern Background */
+        .islamic-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1000;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mosque-icon {
+            font-size: 40px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .header-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(to right, #fff, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 18px;
+            color: #FFD700;
+            margin-top: 2px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .stat-card.completed .stat-number {
+            color: #4CAF50;
+        }
+
+        .stat-card.construction .stat-number {
+            color: #2196F3;
+        }
+
+        .stat-card.needed .stat-number {
+            color: #f44336;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 90px);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .sidebar-header {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .sidebar-header h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header .subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+            font-family: 'Amiri', serif;
+        }
+
+        .town-list {
+            padding: 15px;
+        }
+
+        .town-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .town-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-color: #4CAF50;
+        }
+
+        .town-card.active {
+            border-color: #4CAF50;
+            background: linear-gradient(135deg, #f1f8e9, #ffffff);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.2);
+        }
+
+        .town-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 2px;
+        }
+
+        .town-card:nth-child(1)::before {
+            background: #1B5E20;
+        }
+
+        .town-card:nth-child(2)::before {
+            background: #2E7D32;
+        }
+
+        .town-card:nth-child(3)::before {
+            background: #388E3C;
+        }
+
+        .town-card:nth-child(4)::before {
+            background: #43A047;
+        }
+
+        .town-card:nth-child(5)::before {
+            background: #4CAF50;
+        }
+
+        .town-card:nth-child(6)::before {
+            background: #66BB6A;
+        }
+
+        .town-card:nth-child(7)::before {
+            background: #81C784;
+        }
+
+        .town-card:nth-child(8)::before {
+            background: #A5D6A7;
+        }
+
+        .town-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .town-name .icon {
+            font-size: 24px;
+        }
+
+        .town-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .town-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.green {
+            background: #4CAF50;
+        }
+
+        .dot.blue {
+            background: #2196F3;
+        }
+
+        .dot.red {
+            background: #f44336;
+        }
+
+        /* Map Container */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Legend Overlay */
+        .legend-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .mosque-marker {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .loading .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e0e0e0;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .header-stats {
+                gap: 10px;
+            }
+        }
+
+        /* Islamic Decorative Border */
+        .islamic-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    #FFD700 0%, #4CAF50 25%,
+                    #FFD700 50%, #4CAF50 75%,
+                    #FFD700 100%);
+            z-index: 10000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="islamic-border"></div>
+    <div class="islamic-pattern"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p style="color: #333; font-family: 'Amiri', serif;">Loading Masajid Data...</p>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="mosque-icon">🕌</div>
+            <div class="header-title">
+                <h1>Faizan-e-Madina Masajid</h1>
+                <div class="arabic">فیضان مدینہ مساجد - فیصل آباد</div>
+            </div>
+        </div>
+        <div class="header-stats" id="headerStats">
+            <!-- Filled dynamically -->
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>🏙️ Towns & Areas</h2>
+                <div class="subtitle">فیصل آباد کے علاقے</div>
+            </div>
+            <div class="town-list" id="townList">
+                <!-- Filled dynamically -->
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+
+            <!-- Legend -->
+            <div class="legend-overlay">
+                <div class="legend-title">📍 Status Legend</div>
+                <div class="legend-item">
+                    <div class="mosque-marker" style="color: #4CAF50;">🕌</div>
+                    <span>Completed (تکمیل شدہ)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="mosque-marker" style="color: #2196F3;">🕌</div>
+                    <span>Under Construction (زیر تعمیر)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="mosque-marker" style="color: #f44336;">🕌</div>
+                    <span>Needed (مطلوب)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let map;
+        let allData;
+        let currentTownPolygons = [];
+        let allMarkers = [];
+        let activeTown = null;
+
+        // Initialize Map
+        async function initMap() {
+            const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+            map = new Map(document.getElementById("map"), {
+                center: { lat: 31.4504, lng: 73.1350 },
+                zoom: 13,
+                mapId: "FAISALABAD_MASJID_MAP",
+                styles: [
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
+                        "stylers": [{ "visibility": "off" }]
+                    }
+                ]
+            });
+
+            // Load data from JSON
+            try {
+                const response = await fetch('masajid-data.json');
+                allData = await response.json();
+
+                // Initialize UI
+                updateHeaderStats();
+                createTownList();
+                loadAllMasajidMarkers(AdvancedMarkerElement, PinElement, InfoWindow);
+
+                // Hide loading
+                document.getElementById('loading').style.display = 'none';
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML =
+                    '<p style="color: red;">Error loading data. Please check console.</p>';
+            }
+        }
+
+        // Update Header Statistics
+        function updateHeaderStats() {
+            const stats = allData.totalStats;
+            document.getElementById('headerStats').innerHTML = `
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #fff;">${stats.total}</span>
+                    <span class="stat-label">Total Masajid</span>
+                </div>
+                <div class="stat-card completed">
+                    <span class="stat-number">${stats.completed}</span>
+                    <span class="stat-label">Completed ✓</span>
+                </div>
+                <div class="stat-card construction">
+                    <span class="stat-number">${stats.underConstruction}</span>
+                    <span class="stat-label">Under Construction</span>
+                </div>
+                <div class="stat-card needed">
+                    <span class="stat-number">${stats.needed}</span>
+                    <span class="stat-label">Needed</span>
+                </div>
+            `;
+        }
+
+        // Create Town List in Sidebar
+        function createTownList() {
+            const townList = document.getElementById('townList');
+            const towns = allData.towns;
+
+            for (const [townKey, townData] of Object.entries(towns)) {
+                const completed = townData.masajid.filter(m => m.status === 'completed').length;
+                const underConstruction = townData.masajid.filter(m => m.status === 'underConstruction').length;
+                const needed = townData.masajid.filter(m => m.status === 'needed').length;
+
+                const card = document.createElement('div');
+                card.className = 'town-card';
+                card.onclick = () => highlightTown(townKey, townData);
+                card.innerHTML = `
+                    <div class="town-name">
+                        <span class="icon">📍</span>
+                        <span>${townData.name}</span>
+                    </div>
+                    <div class="town-stats">
+                        <div class="town-stat">
+                            <span class="dot green"></span>
+                            <span>${completed} Completed</span>
+                        </div>
+                        <div class="town-stat">
+                            <span class="dot blue"></span>
+                            <span>${underConstruction} Construction</span>
+                        </div>
+                        <div class="town-stat">
+                            <span class="dot red"></span>
+                            <span>${needed} Needed</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 12px; color: #666;">
+                        Total: <strong>${townData.masajid.length}</strong> Masajid
+                    </div>
+                `;
+
+                townList.appendChild(card);
+            }
+        }
+
+        // Load All Masjid Markers
+        function loadAllMasajidMarkers(AdvancedMarkerElement, PinElement, InfoWindow) {
+            const infoWindow = new InfoWindow();
+            const towns = allData.towns;
+
+            for (const [townKey, townData] of Object.entries(towns)) {
+                townData.masajid.forEach(masjid => {
+                    // Create mosque-shaped marker
+                    const markerElement = document.createElement('div');
+                    markerElement.style.cssText = `
+                        font-size: 32px;
+                        cursor: pointer;
+                        transition: transform 0.3s;
+                        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+                    `;
+
+                    let color;
+                    switch (masjid.status) {
+                        case 'completed':
+                            color = '#4CAF50';
+                            break;
+                        case 'underConstruction':
+                            color = '#2196F3';
+                            break;
+                        case 'needed':
+                            color = '#f44336';
+                            break;
+                    }
+
+                    markerElement.innerHTML = '🕌';
+                    markerElement.style.color = color;
+
+                    markerElement.addEventListener('mouseenter', () => {
+                        markerElement.style.transform = 'scale(1.2)';
+                    });
+
+                    markerElement.addEventListener('mouseleave', () => {
+                        markerElement.style.transform = 'scale(1)';
+                    });
+
+                    const marker = new AdvancedMarkerElement({
+                        map: map,
+                        position: { lat: masjid.lat, lng: masjid.lng },
+                        title: masjid.name,
+                        content: markerElement,
+                    });
+
+                    // Add click listener
+                    marker.addListener('click', () => {
+                        const statusText = {
+                            'completed': '✅ Completed (تکمیل شدہ)',
+                            'underConstruction': '🚧 Under Construction (زیر تعمیر)',
+                            'needed': '❌ Needed (مطلوب)'
+                        };
+
+                        infoWindow.setContent(`
+                            <div style="padding: 15px; font-family: 'Poppins', sans-serif; min-width: 280px;">
+                                <h3 style="color: #1B5E20; margin: 0 0 10px 0; font-size: 18px;">
+                                    🕌 ${masjid.name}
+                                </h3>
+                                <div style="margin: 10px 0;">
+                                    <strong style="color: #333;">Status:</strong>
+                                    <span style="color: ${color}; font-weight: 600;">
+                                        ${statusText[masjid.status]}
+                                    </span>
+                                </div>
+                                <div style="margin: 10px 0;">
+                                    <strong style="color: #333;">Area:</strong> ${townData.name}
+                                </div>
+                                <div style="margin: 10px 0;">
+                                    <strong style="color: #333;">Address:</strong><br>
+                                    <span style="font-size: 13px; color: #666;">${masjid.address}</span>
+                                </div>
+                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 11px; color: #999;">
+                                    📍 Coordinates: ${masjid.lat.toFixed(4)}, ${masjid.lng.toFixed(4)}
+                                </div>
+                            </div>
+                        `);
+                        infoWindow.open(map, marker);
+                    });
+
+                    allMarkers.push({ marker, townKey });
+                });
+            }
+        }
+
+        // Highlight Town
+        function highlightTown(townKey, townData) {
+            // Clear previous highlights
+            currentTownPolygons.forEach(p => p.setMap(null));
+            currentTownPolygons = [];
+
+            // Remove active class from all cards
+            document.querySelectorAll('.town-card').forEach(c => c.classList.remove('active'));
+
+            // Add active class to selected town
+            event.target.closest('.town-card').classList.add('active');
+
+            // Create polygon boundary
+            const polygon = new google.maps.Polygon({
+                paths: townData.boundary,
+                strokeColor: townData.color,
+                strokeOpacity: 0.8,
+                strokeWeight: 3,
+                fillColor: townData.color,
+                fillOpacity: 0.15,
+                map: map,
+            });
+            currentTownPolygons.push(polygon);
+
+            // Create bounds and zoom
+            const bounds = new google.maps.LatLngBounds();
+            townData.boundary.forEach(point => bounds.extend(point));
+            map.fitBounds(bounds, { padding: 50 });
+
+            // Add town label
+            const labelMarker = new google.maps.Marker({
+                position: townData.center,
+                map: map,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 0,
+                },
+                label: {
+                    text: townData.name,
+                    color: '#1B5E20',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    className: 'town-label'
+                },
+            });
+            currentTownPolygons.push(labelMarker);
+
+            activeTown = townKey;
+        }
+
+        // Initialize when API loads
+        window.initMap = initMap;
+    </script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEL4WiuyOSJ4W9Tx6pqt3AlETZHWqIeQ&callback=initMap&loading=async&v=weekly"
+        async defer></script>
+</body>
+
+</html>
