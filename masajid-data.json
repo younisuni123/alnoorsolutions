@@ -2,20 +2,36 @@
   "city": "Faisalabad",
   "lastUpdated": "2024-01-15",
   "totalStats": {
-    "total": 25,
-    "completed": 12,
-    "underConstruction": 8,
+    "total": 23,
+    "completed": 7,
+    "underConstruction": 6,
+    "emptyPlot": 5,
     "needed": 5
   },
   "towns": {
     "iqbalTown": {
       "name": "Iqbal Town",
-      "center": { "lat": 31.44, "lng": 73.11 },
+      "center": {
+        "lat": 31.44,
+        "lng": 73.11
+      },
       "boundary": [
-        { "lat": 31.46, "lng": 73.09 },
-        { "lat": 31.46, "lng": 73.13 },
-        { "lat": 31.42, "lng": 73.13 },
-        { "lat": 31.42, "lng": 73.09 }
+        {
+          "lat": 31.46,
+          "lng": 73.09
+        },
+        {
+          "lat": 31.46,
+          "lng": 73.13
+        },
+        {
+          "lat": 31.42,
+          "lng": 73.13
+        },
+        {
+          "lat": 31.42,
+          "lng": 73.09
+        }
       ],
       "color": "#1B5E20",
       "masajid": [
@@ -44,12 +60,27 @@
     },
     "madinaTown": {
       "name": "Madina Town",
-      "center": { "lat": 31.41, "lng": 73.08 },
+      "center": {
+        "lat": 31.41,
+        "lng": 73.08
+      },
       "boundary": [
-        { "lat": 31.43, "lng": 73.06 },
-        { "lat": 31.43, "lng": 73.1 },
-        { "lat": 31.39, "lng": 73.1 },
-        { "lat": 31.39, "lng": 73.06 }
+        {
+          "lat": 31.43,
+          "lng": 73.06
+        },
+        {
+          "lat": 31.43,
+          "lng": 73.1
+        },
+        {
+          "lat": 31.39,
+          "lng": 73.1
+        },
+        {
+          "lat": 31.39,
+          "lng": 73.06
+        }
       ],
       "color": "#2E7D32",
       "masajid": [
@@ -66,17 +97,39 @@
           "lng": 73.075,
           "status": "underConstruction",
           "address": "North Block, Madina Town"
+        },
+        {
+          "name": "Faizan-e-Madina - Madina Town East Plot",
+          "lat": 31.41,
+          "lng": 73.09,
+          "status": "emptyPlot",
+          "address": "East Plot, Madina Town"
         }
       ]
     },
     "jinnahColony": {
       "name": "Jinnah Colony",
-      "center": { "lat": 31.43, "lng": 73.15 },
+      "center": {
+        "lat": 31.43,
+        "lng": 73.15
+      },
       "boundary": [
-        { "lat": 31.45, "lng": 73.14 },
-        { "lat": 31.45, "lng": 73.16 },
-        { "lat": 31.41, "lng": 73.16 },
-        { "lat": 31.41, "lng": 73.14 }
+        {
+          "lat": 31.45,
+          "lng": 73.14
+        },
+        {
+          "lat": 31.45,
+          "lng": 73.16
+        },
+        {
+          "lat": 31.41,
+          "lng": 73.16
+        },
+        {
+          "lat": 31.41,
+          "lng": 73.14
+        }
       ],
       "color": "#388E3C",
       "masajid": [
@@ -93,17 +146,39 @@
           "lng": 73.145,
           "status": "needed",
           "address": "West Jinnah Colony"
+        },
+        {
+          "name": "Faizan-e-Madina - Jinnah Colony North Plot",
+          "lat": 31.445,
+          "lng": 73.158,
+          "status": "emptyPlot",
+          "address": "North Plot, Jinnah Colony"
         }
       ]
     },
     "gulberg": {
       "name": "Gulberg",
-      "center": { "lat": 31.47, "lng": 73.11 },
+      "center": {
+        "lat": 31.47,
+        "lng": 73.11
+      },
       "boundary": [
-        { "lat": 31.49, "lng": 73.09 },
-        { "lat": 31.49, "lng": 73.13 },
-        { "lat": 31.45, "lng": 73.13 },
-        { "lat": 31.45, "lng": 73.09 }
+        {
+          "lat": 31.49,
+          "lng": 73.09
+        },
+        {
+          "lat": 31.49,
+          "lng": 73.13
+        },
+        {
+          "lat": 31.45,
+          "lng": 73.13
+        },
+        {
+          "lat": 31.45,
+          "lng": 73.09
+        }
       ],
       "color": "#43A047",
       "masajid": [
@@ -132,12 +207,27 @@
     },
     "peoplesColony": {
       "name": "People's Colony",
-      "center": { "lat": 31.4, "lng": 73.13 },
+      "center": {
+        "lat": 31.4,
+        "lng": 73.13
+      },
       "boundary": [
-        { "lat": 31.42, "lng": 73.11 },
-        { "lat": 31.42, "lng": 73.15 },
-        { "lat": 31.38, "lng": 73.15 },
-        { "lat": 31.38, "lng": 73.11 }
+        {
+          "lat": 31.42,
+          "lng": 73.11
+        },
+        {
+          "lat": 31.42,
+          "lng": 73.15
+        },
+        {
+          "lat": 31.38,
+          "lng": 73.15
+        },
+        {
+          "lat": 31.38,
+          "lng": 73.11
+        }
       ],
       "color": "#4CAF50",
       "masajid": [
@@ -154,17 +244,39 @@
           "lng": 73.125,
           "status": "underConstruction",
           "address": "People's Colony No.2"
+        },
+        {
+          "name": "Faizan-e-Madina - People's Colony Plot 3",
+          "lat": 31.41,
+          "lng": 73.14,
+          "status": "emptyPlot",
+          "address": "Vacant Plot, People's Colony"
         }
       ]
     },
     "ghulamMuhammadAbad": {
       "name": "Ghulam Muhammad Abad",
-      "center": { "lat": 31.39, "lng": 73.07 },
+      "center": {
+        "lat": 31.39,
+        "lng": 73.07
+      },
       "boundary": [
-        { "lat": 31.41, "lng": 73.05 },
-        { "lat": 31.41, "lng": 73.09 },
-        { "lat": 31.37, "lng": 73.09 },
-        { "lat": 31.37, "lng": 73.05 }
+        {
+          "lat": 31.41,
+          "lng": 73.05
+        },
+        {
+          "lat": 31.41,
+          "lng": 73.09
+        },
+        {
+          "lat": 31.37,
+          "lng": 73.09
+        },
+        {
+          "lat": 31.37,
+          "lng": 73.05
+        }
       ],
       "color": "#66BB6A",
       "masajid": [
@@ -181,17 +293,39 @@
           "lng": 73.065,
           "status": "needed",
           "address": "South G.M. Abad"
+        },
+        {
+          "name": "Faizan-e-Madina - G.M. Abad Vacant Plot",
+          "lat": 31.3955,
+          "lng": 73.08,
+          "status": "emptyPlot",
+          "address": "Vacant Plot, G.M. Abad"
         }
       ]
     },
     "civilLines": {
       "name": "Civil Lines",
-      "center": { "lat": 31.42, "lng": 73.1 },
+      "center": {
+        "lat": 31.42,
+        "lng": 73.1
+      },
       "boundary": [
-        { "lat": 31.435, "lng": 73.095 },
-        { "lat": 31.435, "lng": 73.115 },
-        { "lat": 31.405, "lng": 73.115 },
-        { "lat": 31.405, "lng": 73.095 }
+        {
+          "lat": 31.435,
+          "lng": 73.095
+        },
+        {
+          "lat": 31.435,
+          "lng": 73.115
+        },
+        {
+          "lat": 31.405,
+          "lng": 73.115
+        },
+        {
+          "lat": 31.405,
+          "lng": 73.095
+        }
       ],
       "color": "#81C784",
       "masajid": [
@@ -208,17 +342,46 @@
           "lng": 73.1,
           "status": "underConstruction",
           "address": "Civil Lines Extension"
+        },
+        {
+          "name": "Faizan-e-Madina - Civil Lines Vacant Plot",
+          "lat": 31.412,
+          "lng": 73.11,
+          "status": "emptyPlot",
+          "address": "Vacant Plot, Civil Lines"
+        },
+        {
+          "name": "Faizan-e-Madina - Civil Lines 2",
+          "lat": 31.406,
+          "lng": 73.11,
+          "status": "emptyPlot",
+          "address": "Faizan-e-Madina - Civil Lines 2"
         }
       ]
     },
     "samundriRoad": {
       "name": "Samundri Road",
-      "center": { "lat": 31.38, "lng": 73.16 },
+      "center": {
+        "lat": 31.38,
+        "lng": 73.16
+      },
       "boundary": [
-        { "lat": 31.4, "lng": 73.14 },
-        { "lat": 31.4, "lng": 73.18 },
-        { "lat": 31.36, "lng": 73.18 },
-        { "lat": 31.36, "lng": 73.14 }
+        {
+          "lat": 31.4,
+          "lng": 73.14
+        },
+        {
+          "lat": 31.4,
+          "lng": 73.18
+        },
+        {
+          "lat": 31.36,
+          "lng": 73.18
+        },
+        {
+          "lat": 31.36,
+          "lng": 73.14
+        }
       ],
       "color": "#A5D6A7",
       "masajid": [
