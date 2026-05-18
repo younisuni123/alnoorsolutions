@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -127,6 +127,10 @@
             color: #f44336;
         }
 
+        .stat-card.empty .stat-number {
+            color: #FFD700;
+        }
+
         .main-container {
             display: flex;
             height: calc(100vh - 100px);
@@ -153,11 +157,6 @@
         .sidebar-header h2 {
             font-size: 18px;
             margin-bottom: 3px;
-        }
-
-        .sidebar-header .subtitle {
-            font-size: 12px;
-            opacity: 0.9;
         }
 
         .town-list {
@@ -228,6 +227,10 @@
             background: #f44336;
         }
 
+        .dot.yellow {
+            background: #FFD700;
+        }
+
         .map-container {
             flex: 1;
             position: relative;
@@ -253,7 +256,6 @@
             font-weight: 600;
             margin-bottom: 10px;
             font-size: 13px;
-            text-transform: uppercase;
         }
 
         .legend-item {
@@ -330,41 +332,12 @@
             background: #4CAF50;
             border-radius: 3px;
         }
-
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                max-height: 35vh;
-            }
-
-            .header {
-                padding: 10px;
-            }
-
-            .header-stats {
-                gap: 5px;
-            }
-
-            .stat-card {
-                padding: 8px 12px;
-                min-width: 70px;
-            }
-
-            .stat-number {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 
 <body>
     <div class="islamic-border"></div>
 
-    <!-- Header -->
     <div class="header">
         <div class="header-left">
             <div class="mosque-icon">🕌</div>
@@ -380,35 +353,34 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-container">
-        <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <h2>🏙️ Towns & Areas</h2>
-                <div class="subtitle">فیصل آباد کے علاقے</div>
             </div>
             <div class="town-list" id="townList"></div>
         </div>
 
-        <!-- Map -->
         <div class="map-container">
             <button class="reset-btn" onclick="resetAll()">🔄 Reset View</button>
             <div id="map"></div>
 
-            <!-- Legend -->
             <div class="legend-overlay">
                 <div class="legend-title">📍 Status Legend</div>
                 <div class="legend-item">
-                    <span class="legend-mosque" style="color: #4CAF50;">🕌</span>
+                    <span class="legend-mosque" style="background-color: #4CAF50;">🕌</span>
                     <span>Completed (تکمیل شدہ)</span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-mosque" style="color: #2196F3;">🕌</span>
+                    <span class="legend-mosque" style="background-color: #2196F3;">🕌</span>
                     <span>Under Construction (زیر تعمیر)</span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-mosque" style="color: #f44336;">🕌</span>
+                    <span class="legend-mosque" style="background-color: #FFD700;">🕌</span>
+                    <span>Empty Plots (خالی جگہ)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-mosque" style="background-color: #f44336;">🕌</span>
                     <span>Needed (مطلوب)</span>
                 </div>
             </div>
@@ -416,18 +388,42 @@
     </div>
 
     <script>
-       
-const response = await fetch('masajid-data.json');
-                masjidData = await response.json();
         let map;
+        let allData;
         let currentTownPolygons = [];
         let allMarkers = [];
         let activeTown = null;
         let currentFilter = 'all';
 
-        // Initialize Map
+        // Load JSON data first, then initialize map
+        async function loadDataAndInitMap() {
+            try {
+                console.log('Loading masajid-data.json...');
+                const response = await fetch('masajid-data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                allData = await response.json();
+                console.log('Data loaded successfully:', allData);
+
+                // Initialize map after data is loaded
+                initMap();
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+                document.getElementById('map').innerHTML =
+                    `<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: white;">
+                        <div style="text-align: center; padding: 40px;">
+                            <h2 style="color: red;">❌ Error Loading Data</h2>
+                            <p style="color: #666; margin: 10px 0;">Could not load masajid-data.json</p>
+                            <p style="color: #999; font-size: 14px;">Please make sure the JSON file is in the same folder as this HTML file.</p>
+                            <p style="color: #999; font-size: 12px; margin-top: 10px;">Error: ${error.message}</p>
+                        </div>
+                    </div>`;
+            }
+        }
+
         function initMap() {
-            console.log('Map initialization started...');
+            console.log('Initializing Google Map...');
 
             map = new google.maps.Map(document.getElementById("map"), {
                 center: { lat: 31.4504, lng: 73.1350 },
@@ -443,40 +439,54 @@ const response = await fetch('masajid-data.json');
 
             console.log('Map created successfully');
 
-            // Initialize UI
             updateHeaderStats();
             createTownList();
             loadAllMasajidMarkers();
 
-            console.log('All markers loaded successfully');
+            console.log('All components initialized successfully');
         }
 
-        // Update Header Statistics
         function updateHeaderStats() {
-            const stats = masjidData.totalStats;
             const headerStats = document.getElementById('headerStats');
+            let total = 0, completed = 0, underConstruction = 0, needed = 0, emptyPlot = 0;
+            const towns = allData.towns;
+
+            for (const town of Object.values(towns)) {
+                for (const m of town.masajid) {
+                    total++;
+                    switch (m.status) {
+                        case 'completed': completed++; break;
+                        case 'underConstruction': underConstruction++; break;
+                        case 'needed': needed++; break;
+                        case 'emptyPlot': emptyPlot++; break;
+                    }
+                }
+            }
 
             headerStats.innerHTML = `
                 <div class="stat-card total ${currentFilter === 'all' ? 'active' : ''}" onclick="filterMarkers('all')">
-                    <span class="stat-number">${stats.total}</span>
+                    <span class="stat-number">${total}</span>
                     <span class="stat-label">Total Masajid</span>
                 </div>
                 <div class="stat-card completed ${currentFilter === 'completed' ? 'active' : ''}" onclick="filterMarkers('completed')">
-                    <span class="stat-number">${stats.completed}</span>
+                    <span class="stat-number">${completed}</span>
                     <span class="stat-label">Completed ✓</span>
                 </div>
                 <div class="stat-card construction ${currentFilter === 'underConstruction' ? 'active' : ''}" onclick="filterMarkers('underConstruction')">
-                    <span class="stat-number">${stats.underConstruction}</span>
+                    <span class="stat-number">${underConstruction}</span>
                     <span class="stat-label">Under Construction</span>
                 </div>
+                <div class="stat-card empty ${currentFilter === 'emptyPlot' ? 'active' : ''}" onclick="filterMarkers('emptyPlot')">
+                    <span class="stat-number">${emptyPlot}</span>
+                    <span class="stat-label">Empty Plots</span>
+                </div>
                 <div class="stat-card needed ${currentFilter === 'needed' ? 'active' : ''}" onclick="filterMarkers('needed')">
-                    <span class="stat-number">${stats.needed}</span>
+                    <span class="stat-number">${needed}</span>
                     <span class="stat-label">Needed</span>
                 </div>
             `;
         }
 
-        // Filter Markers
         function filterMarkers(status) {
             currentFilter = status;
             updateHeaderStats();
@@ -498,6 +508,7 @@ const response = await fetch('masajid-data.json');
                 const statusNames = {
                     'completed': '✅ Completed Masajid',
                     'underConstruction': '🚧 Under Construction Masajid',
+                    'emptyPlot': '🟡 Empty Plots',
                     'needed': '❌ Needed Masajid'
                 };
 
@@ -510,7 +521,7 @@ const response = await fetch('masajid-data.json');
             if (visibleCount > 0 && status !== 'all') {
                 const bounds = new google.maps.LatLngBounds();
                 allMarkers.forEach(({ marker, masjidData }) => {
-                    if (status === 'all' || masjidData.status === status) {
+                    if (status === 'all' || masajidData?.status === status || masjidData.status === status) {
                         bounds.extend(marker.getPosition());
                     }
                 });
@@ -529,15 +540,16 @@ const response = await fetch('masajid-data.json');
             map.setZoom(13);
         }
 
-        // Create Town List
         function createTownList() {
             const townList = document.getElementById('townList');
-            const towns = masjidData.towns;
+            const towns = allData.towns;
+            townList.innerHTML = '';
 
             for (const [townKey, townData] of Object.entries(towns)) {
                 const completed = townData.masajid.filter(m => m.status === 'completed').length;
                 const underConstruction = townData.masajid.filter(m => m.status === 'underConstruction').length;
                 const needed = townData.masajid.filter(m => m.status === 'needed').length;
+                const emptyPlot = townData.masajid.filter(m => m.status === 'emptyPlot').length;
 
                 const card = document.createElement('div');
                 card.className = 'town-card';
@@ -555,6 +567,10 @@ const response = await fetch('masajid-data.json');
                             <span>${underConstruction} Construction</span>
                         </div>
                         <div class="town-stat">
+                            <span class="dot yellow"></span>
+                            <span>${emptyPlot} Empty</span>
+                        </div>
+                        <div class="town-stat">
                             <span class="dot red"></span>
                             <span>${needed} Needed</span>
                         </div>
@@ -568,62 +584,69 @@ const response = await fetch('masajid-data.json');
             }
         }
 
-        // Load All Masjid Markers
         function loadAllMasajidMarkers() {
+            // clear existing markers
+            allMarkers.forEach(({ marker }) => marker.setMap(null));
+            allMarkers = [];
+
             const infoWindow = new google.maps.InfoWindow();
-            const towns = masjidData.towns;
+            const towns = allData.towns;
 
             for (const [townKey, townData] of Object.entries(towns)) {
                 townData.masajid.forEach(masjid => {
-                    let color, statusText;
+                    let color = '#9E9E9E';
+                    let statusText = masjid.status;
                     switch (masjid.status) {
                         case 'completed':
                             color = '#4CAF50';
-                            statusText = '✅ Completed';
+                            statusText = '✅ Completed (تکمیل شدہ)';
                             break;
                         case 'underConstruction':
                             color = '#2196F3';
-                            statusText = '🚧 Under Construction';
+                            statusText = '🚧 Under Construction (زیر تعمیر)';
+                            break;
+                        case 'emptyPlot':
+                            color = '#FFD700';
+                            statusText = '🟡 Empty Plot (خالی جگہ)';
                             break;
                         case 'needed':
                             color = '#f44336';
-                            statusText = '❌ Needed';
+                            statusText = '❌ Needed (مطلوب)';
                             break;
                     }
-
-                    // Create custom mosque icon
-                    const iconUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
-                            <text x="2" y="20" font-size="20" fill="${color}">🕌</text>
-                        </svg>
-                    `)}`;
 
                     const marker = new google.maps.Marker({
                         map: map,
                         position: { lat: masjid.lat, lng: masjid.lng },
                         title: masjid.name,
                         icon: {
-                            url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-                                    <circle cx="20" cy="18" r="16" fill="${color}" stroke="white" stroke-width="2"/>
-                                    <text x="20" y="25" text-anchor="middle" font-size="20" fill="white">🕌</text>
-                                </svg>
-                            `)}`,
-                            scaledSize: new google.maps.Size(45, 45),
-                            anchor: new google.maps.Point(22, 22),
+                            path: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z',
+                            fillColor: color,
+                            fillOpacity: 1,
+                            strokeColor: '#FFFFFF',
+                            strokeWeight: 2,
+                            scale: 1.5,
+                            anchor: new google.maps.Point(12, 24),
+                            labelOrigin: new google.maps.Point(12, 9),
+                        },
+                        label: {
+                            text: '🕌',
+                            fontSize: '20px',
                         },
                         animation: google.maps.Animation.DROP,
                     });
 
-                    // Add click listener
                     marker.addListener('click', () => {
                         infoWindow.setContent(`
-                            <div style="padding: 15px; font-family: sans-serif; min-width: 280px;">
+                            <div style="padding: 15px; min-width: 280px;">
                                 <h3 style="color: #1B5E20; margin: 0 0 10px 0;">🕌 ${masjid.name}</h3>
-                                <div style="background: #f5f5f5; padding: 10px; border-radius: 8px;">
-                                    <p style="margin: 5px 0;"><strong>Status:</strong> <span style="color: ${color};">${statusText}</span></p>
-                                    <p style="margin: 5px 0;"><strong>Area:</strong> ${townData.name}</p>
-                                    <p style="margin: 5px 0;"><strong>Address:</strong> ${masjid.address}</p>
+                                <div style="background: #f5f5f5; padding: 12px; border-radius: 8px;">
+                                    <p style="margin: 8px 0;"><strong>Status:</strong> <span style="color: ${color};">${statusText}</span></p>
+                                    <p style="margin: 8px 0;"><strong>Area:</strong> ${townData.name}</p>
+                                    <p style="margin: 8px 0;"><strong>Address:</strong> ${masjid.address}</p>
+                                </div>
+                                <div style="margin-top: 10px; font-size: 11px; color: #999; text-align: center;">
+                                    📍 ${masjid.lat}, ${masjid.lng}
                                 </div>
                             </div>
                         `);
@@ -635,7 +658,6 @@ const response = await fetch('masajid-data.json');
             }
         }
 
-        // Highlight Town
         function highlightTown(townKey, townData, cardElement) {
             clearTownHighlight();
 
@@ -644,7 +666,6 @@ const response = await fetch('masajid-data.json');
                 cardElement.classList.add('active');
             }
 
-            // Create polygon
             const polygon = new google.maps.Polygon({
                 paths: townData.boundary,
                 strokeColor: '#FFD700',
@@ -656,7 +677,6 @@ const response = await fetch('masajid-data.json');
             });
             currentTownPolygons.push(polygon);
 
-            // Zoom to town
             const bounds = new google.maps.LatLngBounds();
             townData.boundary.forEach(point => bounds.extend(point));
             map.fitBounds(bounds, { padding: 60 });
@@ -679,6 +699,13 @@ const response = await fetch('masajid-data.json');
         window.filterMarkers = filterMarkers;
         window.clearFilters = clearFilters;
         window.resetAll = resetAll;
+    </script>
+
+    <script>
+        // Load data when page loads, then initialize map
+        window.addEventListener('DOMContentLoaded', () => {
+            loadDataAndInitMap();
+        });
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEL4WiuyOSJ4W9Tx6pqt3AlETZHWqIeQ&callback=initMap"
